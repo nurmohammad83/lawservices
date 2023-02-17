@@ -1,5 +1,7 @@
+import { useState } from "react";
 
 const Navbar = () => {
+    const [open, setOpen] = useState(false);
     return (
         <div className="fixed z-40 w-full bg-black top-0 lg:border-b transition ease-in" id="nav">
         <div className="flex justify-between items-center max-w-screen-xl border-b lg:border-none bg-opacity-30 bg-transparent mx-auto px-4 lg:px-16 py-6">
@@ -14,22 +16,20 @@ const Navbar = () => {
                 </ul>
             </nav>
             <a href="#" className="ml-auto lg:ml-0 text-white py-2 px-6 rounded-full bg-green-600 hover:bg-green-500 transition ease-in-out">Get Started</a>
-            <button className="toggle-button block lg:hidden focus:outline-none ml-4">
-                <svg className="w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-            </button>
+            <div className="text-3xl md:hidden" onClick={() => setOpen(!open)}>
+            <ion-icon name={`${open ? "close" : "menu"}`}></ion-icon>
+            </div>
         </div>
 
         {/* <!-- mobile menu --> */}
-        <div className="content hidden space-y-4 font-medium text-white p-4">
-            <a className="block text-center" href="index.html">Home</a>
-            <a className="block text-center" href="#">About</a>
-            <a className="block text-center" href="#">Services</a>
-            <a className="block text-center" href="#">Portfolio</a>
-            <a className="block text-center" href="#">Pricing</a>
-            <a className="block text-center" href="#">Dropdown</a>
-            <a className="block text-center" href="#">Contact</a>
+        <div className={`content md:hidden bg-white fixed w-full top-20 py-8 bottom-0 duration-500 ${open ? "left-0" : "left-[-100%]"}`}>
+            <a className="block text-center text-lg font-semibold pb-2" href="index.html">Home</a>
+            <a className="block text-center text-lg font-semibold pb-2" href="#">About</a>
+            <a className="block text-center text-lg font-semibold pb-2" href="#">Services</a>
+            <a className="block text-center text-lg font-semibold pb-2" href="#">Portfolio</a>
+            <a className="block text-center text-lg font-semibold pb-2" href="#">Pricing</a>
+            <a className="block text-center text-lg font-semibold pb-2" href="#">Dropdown</a>
+            <a className="block text-center text-lg font-semibold pb-2" href="#">Contact</a>
         </div>
     </div>
     );
